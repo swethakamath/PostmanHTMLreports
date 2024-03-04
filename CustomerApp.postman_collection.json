@@ -1,0 +1,1135 @@
+{
+	"info": {
+		"_postman_id": "6220ab03-6b38-4a78-8911-dad637dd6eea",
+		"name": "CustomerApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30855070"
+	},
+	"item": [
+		{
+			"name": "SendOTP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/SMS/SendOTP?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"SMS",
+						"SendOTP"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"pm.test(\"Verify if IsSuccess is true\", function () {\r",
+							"    pm.expect(response.IsSuccess).to.be.true;\r",
+							"});\r",
+							"pm.globals.set(\"Authtoken\", response.Data.Token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Account/ValidateAccount?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Account",
+						"ValidateAccount"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dashboard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Token\" : \"{{Authtoken}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Dashboard/GetDashboard?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Dashboard",
+						"GetDashboard"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccountsByMobileNo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\",\r\n     \"serviceType\":\"Pest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Account/GetAccountsByMobileNo?mobileNo=8433544769&serviceType=Pest",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Account",
+						"GetAccountsByMobileNo"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						},
+						{
+							"key": "serviceType",
+							"value": "Pest"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpcomingServices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/ServiceRequest/GetUpcomingScheduledService?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"ServiceRequest",
+						"GetUpcomingScheduledService"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderByMobileNo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Order/GetCustomerOrdersByMobileNo?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Order",
+						"GetCustomerOrdersByMobileNo"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetComplaints",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Complaint/GetAllComplaintByMobileNo?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Complaint",
+						"GetAllComplaintByMobileNo"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CallBackRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Building\": \"\",\r\n  \"Company\": \"\",\r\n  \"Email\": \"\",\r\n  \"ServiceCategory\": \"\",\r\n  \"BHK\": \"\",\r\n  \"EmployeeCount\": 0,\r\n  \"LeadType\": \"\",\r\n  \"Utm_Campaign\": \"Mobile app\",\r\n  \"Salutation\": \"\",\r\n  \"Remark\": \"\",\r\n  \"Original_Batch_Name\": \"\",\r\n  \"SFDCId\": \"\",\r\n  \"ServiceType\": \"pest\",\r\n  \"Street\": \"\",\r\n  \"Campaign_Url\": \"\",\r\n  \"Gclid\": \"\",\r\n  \"Status\": \"\",\r\n  \"ServiceSubCategory\": \"\",\r\n  \"CallCenterId\": \"\",\r\n  \"Created_On\": \"\",\r\n  \"Agency\": \"\",\r\n  \"Service_Value\": \"\",\r\n  \"Utm_Term\": \"Mobile app\",\r\n  \"Locality\": \"\",\r\n  \"FirstName\": \"Hemangi\",\r\n  \"Priority\": 0,\r\n  \"Utm_Source\": \"Mobile app\",\r\n  \"Lead_Sub_Source\": \"Mobile app\",\r\n  \"Landmark\": \"\",\r\n  \"FlatNo\": \"\",\r\n  \"Service\": \"Termite Service\",\r\n  \"AltMobile\": \"\",\r\n  \"City\": \"\",\r\n  \"Mobile\": \"8433544769\",\r\n  \"Utm_Content\": \"Mobile app\",\r\n  \"Batch_Name\": \"\",\r\n  \"State\": \"\",\r\n  \"Long\": \"\",\r\n  \"Utm_Sub_Source\": \"Mobile app\",\r\n  \"Lead_Source\": \"Mobile app\",\r\n  \"LastName\": \".\",\r\n  \"LMSId\": \"\",\r\n  \"Pincode\": \"999999\",\r\n  \"Lat\": \"\",\r\n  \"Utm_Medium\": \"Mobile app\",\r\n  \"PaymentMode\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Lead/AddLeadAsync",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Lead",
+						"AddLeadAsync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPlanAndPriceByPincodeAndServiceCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"pincode\":\"400080\",\r\n \"servicecode\":\"RMS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Service/GetPlanAndPriceByPincodeAndServiceCode?pincode=400080&servicecode=CMS",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Service",
+						"GetPlanAndPriceByPincodeAndServiceCode"
+					],
+					"query": [
+						{
+							"key": "pincode",
+							"value": "400080"
+						},
+						{
+							"key": "servicecode",
+							"value": "CMS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActiveBHKList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"IsSuccess\": true,\r\n  \"Data\": [\r\n    {\r\n      \"Id\": 1,\r\n      \"No_Of_BHK\": \"1 RK\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 2,\r\n      \"No_Of_BHK\": \"1 BHK\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 3,\r\n      \"No_Of_BHK\": \"2 BHK\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 5,\r\n      \"No_Of_BHK\": \"3 BHK\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 4,\r\n      \"No_Of_BHK\": \"4 BHK\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 6,\r\n      \"No_Of_BHK\": \"5 BHK\",\r\n      \"Is_Active\": true\r\n    }\r\n  ],\r\n  \"ResponseMessage\": \"Success\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Service/GetActiveBHKList",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Service",
+						"GetActiveBHKList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActiveServiceDetailById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiM2Q0ZWJlMTUtOGJkMS00M2JjLTlmNzYtMmRlMTkyYjAzYjEwIiwiZXhwIjoxNzA4NTMxODYzLCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.mebrhFOXYEWwiIY259qPKExSg37gO_mtv8DtHyvQ6Tg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"serviceId\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Service/GetActiveServiceDetailById?serviceId=1",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Service",
+						"GetActiveServiceDetailById"
+					],
+					"query": [
+						{
+							"key": "serviceId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActiveServiceList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"IsSuccess\": true,\r\n  \"Data\": [\r\n    {\r\n      \"Id\": 1,\r\n      \"Service_Logo\": \"https://hicare-s3.s3.ap-south-1.amazonaws.com/web/CMS.png\",\r\n      \"Service_Code\": \"CMS\",\r\n      \"Service_Name\": \"Cockroach Management Service\",\r\n      \"Service_Thumbnail\": \"https://s3.ap-south-1.amazonaws.com/hicare-others/f94eb55d-d755-4436-b108-afdaf877d76a.jpg\",\r\n      \"Short_Description\": \"<p><strong>4D Cockroach Control and Ant Control Service Features:</strong>\\n</p>\\n<ul style=\\\"list-style-type: circle;\\\">\\n    <li>India's 1st 4D treatment - Deny Shelter, Deny Food, Destroy &amp; Control, Digital&amp; Monitoring </li>\\n    <li>Natural dust, drain enzymes, silicon gel for cracks, crevices\\n    </li>\\n    <li>Specialized bio-degradable garbage bags with repellent effect\\n    </li>\\n</ul>\",\r\n      \"Detail_Description\": \"<p><strong>4D Cockroach Control and Ant Control service Features:</strong>\\n</p>\\n<p>1. India's 1st 4D treatment - Deny Shelter, Deny Food, Destroy &amp; Control, Digital Monitoring <br>\\n    2. Natural dust, drain enzymes, silicon gel for cracks, crevices<br>\\n    3. Specialized bio-degradable garbage bags with repellent effect<br>\\n    4. Traps, gel baiting, spray treatment for roaches<br>5. Scientifically designed interventions for maximum effectiveness<br>6. 100% safe, minimal use of synthetic chemicals<br><br><strong>Complementary Ant Treatment</strong><br>Warranty on 1 and 2-year contracts<br><br><strong>Visits:</strong><br>·&nbsp;Single Service: 1 visit<br>· 1 Year AMC: 3 services, 1 every 4 months<br>· 2 Year AMC: 6 services, 1 every 4 months<br>· Complaint services free for all AMC Plans and 4D Cockroach Control - Single Service<br>·&nbsp;Manpower: 1 per visit<br><br><strong>Terms &amp; Conditions</strong><br>· Efficacy will be effective after 15 days of service<br>· Service needs to be taken within 30 days of the scheduled date<br>· Important to maintain the hygiene of the kitchen for best effectiveness</p>\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 3,\r\n      \"Service_Logo\": \"https://hicare-s3.s3.ap-south-1.amazonaws.com/web/MMS.png\",\r\n      \"Service_Code\": \"MMS\",\r\n      \"Service_Name\": \"Mosquito Management Services\",\r\n      \"Service_Thumbnail\": \"https://s3.ap-south-1.amazonaws.com/hicare-others/582229b0-051f-4b4b-b4ce-b21742e7ce86.jpg\",\r\n      \"Short_Description\": \"<p><strong>3X Mosquito Control</strong></p>\\n<ul style=\\\"list-style-type: circle;\\\">\\n    <li>Smart Air: Automatic dispenser for flying mosquitoes</li>\\n    <li>Smart Walls: Encapsulated spray to kill hiding mosquitoes</li>\\n    <li>Smart Water: Anti-larval treatment to prevent breeding</li>\\n    <li>Hygiene expert guidance for service\\n    </li>\\n</ul>\",\r\n      \"Detail_Description\": \"<p><strong>3X Mosquito Control</strong></p><p> 1. Smart Air: Automatic dispenser for flying mosquitoes </p><p>2. Smart Walls: Encapsulated spray to kill hiding mosquitoes </p><p>3. Smart Water: Anti-larval treatment to prevent breeding </p><p>4. Hygiene expert guidance for service precautions</p><p> AMC includes 4 services</p><p><br><strong>Why choose us?</strong><br>· India's 1st 3X mosquito control treatment<br>· Keep windows open 24x7<br>· 4X less chemical release<br>· Mosquito-free for 90 days with one service<br>· 30-day money-back guarantee*<br></p>\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 4,\r\n      \"Service_Logo\": \"https://hicare-s3.s3.ap-south-1.amazonaws.com/web/TMS.png\",\r\n      \"Service_Code\": \"TMS\",\r\n      \"Service_Name\": \"Termite Management Service\",\r\n      \"Service_Thumbnail\": \"https://hicare.in/pub/media/catalog/category/CMS_Lodha_TMS_800x400.jpg\",\r\n      \"Short_Description\": \"<p><strong>Termite Control Treatment:</strong></p>\\n<ul>\\n    <li>Drill: Holes (1.2cm diameter) are drilled 1 foot apart at skirting level </li>\\n    <li> Fill: Termicide is injected into the holes, controlling termites in the house and colony. </li>\\n    <li> Seal: Holes are sealed with white cement.</li>\\n</ul>\",\r\n      \"Detail_Description\": \"<p><strong>Termite Control Treatment:</strong></p>\\n<p>1. Drill: Holes (1.2cm diameter) are drilled 1 foot apart at skirting level</p>\\n<p>2. Fill: Termicide is injected into the holes, controlling termites in the house and colony.</p>\\n<p>3. Seal: Holes are sealed with white cement.</p><br>\\n<p><strong>Service Details:</strong></p>\\n<p>1. Year AMC: 1 service, 1st-month audit, and additional services in the 4th month.</p>\\n<p>2. Year AMC: 1 service, 1st-month audit, and services in the 4th &amp; 13th months.</p>\\n<p>Manpower: 2 for the 1st service, 1 for audits.</p><br>\\n<p><strong>Why HiCare?</strong></p>\\n<p>· Inspection of entire premises with customer consultation.</p>\\n<p>· Warranty-backed service.</p>\\n<p>· Free complaint service.</p>\\n<p>· Book a free inspection.</p>\\n<p>· Core cutter technique.</p><p><br></p>\\n<p><strong>Terms &amp; Conditions:</strong></p>\\n<p>· Efficacy after 21 days.</p>\\n<p>· Service within 30 days of the scheduled date</p>\",\r\n      \"Is_Active\": true\r\n    },\r\n    {\r\n      \"Id\": 5,\r\n      \"Service_Logo\": \"https://hicare-s3.s3.ap-south-1.amazonaws.com/web/BMS.png\",\r\n      \"Service_Code\": \"BBMS\",\r\n      \"Service_Name\": \"Bedbug Management Service\",\r\n      \"Service_Thumbnail\": \"https://s3.ap-south-1.amazonaws.com/hicare-others/9272c99a-5648-4a4d-a752-985b6523a767.jpg\",\r\n      \"Short_Description\": \"<p><strong>Bed Bug Management Service - Pro&nbsp;Offerings:</strong> </p><ul><li>Trained Hygiene Experts locate bed bug hiding spots</li></ul><ul><li>Odor spray eliminates bed bugs; follow-up service after 15 days </li></ul><ul><li>Ensures complete control of bed bug infestation at home</li></ul>\",\r\n      \"Detail_Description\": \"<p><strong>Bed Bug Management Service - Pro&nbsp;</strong><strong>Offerings:</strong><br>- Trained Hygiene Experts locate bed bug hiding spots<br>- Odor spray eliminates bed bugs; follow-up service after 15 days<br>- Ensures complete control of bed bug infestation at home<br><br><strong>Visits:</strong><br>- 1st Service: Day 1<br>- 2nd Service: Day 16<br>- 3rd Service: Day 46<br>- 4th Service: Day 76<br>- 1 manpower per visit<br><br><strong>Terms &amp; Conditions:</strong><br>- Free Complaint Service<br>- Service within 30 days of scheduled date<br></p>\",\r\n      \"Is_Active\": true\r\n    }\r\n  ],\r\n  \"ResponseMessage\": \"Success\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Service/GetActiveServiceList",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Service",
+						"GetActiveServiceList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetServiceRequestByOrderNo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"orderNo\" : \"24012005980\",\r\n \"serviceType\" : \"Pest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/ServiceRequest/GetServiceRequestByOrderNo?orderNo=24012005980&serviceType=Pest",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"ServiceRequest",
+						"GetServiceRequestByOrderNo"
+					],
+					"query": [
+						{
+							"key": "orderNo",
+							"value": "24012005980"
+						},
+						{
+							"key": "serviceType",
+							"value": "Pest"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTodayScheduledService",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiM2Q0ZWJlMTUtOGJkMS00M2JjLTlmNzYtMmRlMTkyYjAzYjEwIiwiZXhwIjoxNzA4NTMxODYzLCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.mebrhFOXYEWwiIY259qPKExSg37gO_mtv8DtHyvQ6Tg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/ServiceRequest/GetTodayScheduledService?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"ServiceRequest",
+						"GetTodayScheduledService"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUpcomingScheduledService",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobileNo\": \"8433544769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/ServiceRequest/GetUpcomingScheduledService?mobileNo=8433544769",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"ServiceRequest",
+						"GetUpcomingScheduledService"
+					],
+					"query": [
+						{
+							"key": "mobileNo",
+							"value": "8433544769"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getslot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Service_Date\":\"2024-02-23\",\r\n\"Service_Subscription\":\"\",\r\n\"ServiceType\":\"Pest\",\r\n\"Long\":\"72.92463\"\r\n,\"Service_Code\":\"SP301112\",\r\n\"Unit\":\"1 BHK\",\r\n\"Pincode\":\"400057\",\r\n\"Lat\":\"19.108323\"\r\n}\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Slot/GetSlot",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Slot",
+						"GetSlot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookSlot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"TaskId\": \"0011784465\",\r\n  \"AppointmentDate\": \"2024-02-02T10:38:39.522Z\",\r\n  \"AppointmentStart\": \"2/2/2024\",\r\n  \"AppointmentEnd\": \"2/2/2024\",\r\n  \"Source\": \"MobileApp\",\r\n  \"ServiceType\": \"PEST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Slot/GetSlot",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Slot",
+						"GetSlot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckServicablePincode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"pincode\":\"400079\",\r\n \"serviceCode\":\"CMS\",\r\n \"serviceType\": \"PEST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Pincode/CheckServicablePincode?pincode=400079&serviceCode=CMS&serviceType=PEST",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Pincode",
+						"CheckServicablePincode"
+					],
+					"query": [
+						{
+							"key": "pincode",
+							"value": "400079"
+						},
+						{
+							"key": "serviceCode",
+							"value": "CMS"
+						},
+						{
+							"key": "serviceType",
+							"value": "PEST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PublishAppNotificationByMobileNoAsync",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ijg0MzM1NDQ3NjlAaGljYXJlLmluIiwiTW9iaWxlTm8iOiI4NDMzNTQ0NzY5IiwianRpIjoiMTE0NmUxODMtOGZjMC00YTRkLWJmOGQtZTE4ZDkwNDM1MTZkIiwiZXhwIjoxNzA5MzA4Mjg1LCJpc3MiOiJoaWNhcmUubW9iaWxlLmFwaSIsImF1ZCI6ImhpY2FyZS5tb2JpbGUuYXBpIn0.1zR0V97nmBzcI22WjyiwvHq8dvqN_-0Ch8WTi2zA-WA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MobileNo\": \"8433544769\",\r\n  \"Title\": \"HiCare Test\",\r\n  \"Message\": \"Hi Shubham.\",\r\n  \"NotificationImage\": \"https://s3.ap-south-1.amazonaws.com/hicare-others/05da731f-5669-4770-9ea9-061c6d954042.png\",\r\n  \"PageLink\": \"Service|21|3778|400079|8433544769|https://s3.ap-south-1.amazonaws.com/hicare-others/8b88c42f-f538-4f1e-9d82-1c085035d9f1.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Notification/PublishAppNotificationByMobileNoAsync",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Notification",
+						"PublishAppNotificationByMobileNoAsync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActiveAddressListByUserId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userid\":\"2622\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://connect.hicare.in/mobileapi/api/Service/GetActiveAddressListByUserId?userId=2622",
+					"protocol": "https",
+					"host": [
+						"connect",
+						"hicare",
+						"in"
+					],
+					"path": [
+						"mobileapi",
+						"api",
+						"Service",
+						"GetActiveAddressListByUserId"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2622"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
